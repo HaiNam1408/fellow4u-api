@@ -27,9 +27,9 @@ const TourSchema = new mongoose.Schema({
     schedule: {
         type: [{
             place: String,
-            schedule: [{
+            activity: [{
                 time: String,
-                activity: String
+                description: String
             }]
         }]
     },
