@@ -12,19 +12,31 @@ module.exports = tourController = {
         const newTour = await Tour.create(req.body)
         return res.status(200).json({ 
             success: newTour ? true : false, 
-            response: newTour ? newTour : {} 
+            tours: newTour ? newTour : {} 
         })
     }),
 
     getAll: asyncHandler(async (req, res) => {
         const response = await Tour.find({})
         return res.status(200).json({ 
-            response: response 
+            tours: response 
         })
     }),
 
     delete: asyncHandler(async (req, res) => {
         const newTour = await Tour.findByIdAndDelete(req.params.id)
+        return res.status(200).json({ 
+            success: newTour ? true : false, 
+            response: newTour ? newTour : {} 
+        })
+    }),
+
+    update: asyncHandler(async (req, res) => {
+        if(!req.params.id) return res.status(200).json({ 
+            error: "Can't find id"
+        })
+
+        const newTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {new: true})
         return res.status(200).json({ 
             success: newTour ? true : false, 
             response: newTour ? newTour : {} 

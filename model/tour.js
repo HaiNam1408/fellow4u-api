@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+require('mongoose-double')(mongoose);
+
+const SchemaTypes = mongoose.Schema.Types;
 
 const TourSchema = new mongoose.Schema({
     title: {
@@ -34,14 +37,14 @@ const TourSchema = new mongoose.Schema({
         }]
     },
     price: {
-        type: Number,
+        type: SchemaTypes.Double,
         require: true
     },
     like: {
-        type: Number
+        type: SchemaTypes.Double
     },
     ratting: {
-        type: Number
+        type: SchemaTypes.Double
     },
     review: {
         type: Number
